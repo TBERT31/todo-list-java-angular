@@ -10,6 +10,7 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit{
 
   name = this.route.snapshot.params['name'];
+  welcomeMessageFromService = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +22,18 @@ export class WelcomeComponent implements OnInit{
   }
 
   getWelcomeMessage(){
-    console.log(this.welcomeDataService.executeHelloWorldBeanService());
+    this.welcomeDataService.executeHelloWorldBeanService()
+      .subscribe(
+        response => this.handleSuccessfulResponse(response),
+        error => this.handleErrorResponse(error)
+      );
+  }
+
+  handleSuccessfulResponse(response: any){
+    this.welcomeMessageFromService = response.message;
+  }
+
+  handleErrorResponse(error: any){
+    this.welcomeMessageFromService = error.error.message;
   }
 }
