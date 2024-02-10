@@ -1,4 +1,4 @@
-package com.tbert31.rest.webservices.restfulwebservices.basic.auth;
+package com.tbert31.rest.basic.auth;
 
 public class AuthenticationBean {
 
