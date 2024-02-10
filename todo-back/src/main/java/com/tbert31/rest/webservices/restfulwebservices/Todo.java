@@ -1,6 +1,7 @@
 package com.tbert31.rest.webservices.restfulwebservices;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Todo {
     public long id;
@@ -9,6 +10,10 @@ public class Todo {
     public String user;
     public Date targetDate;
     public boolean isDone;
+
+    protected Todo(){
+
+    }
 
     public Todo(long id, String description, String user, Date targetDate, boolean isDone) {
         this.id = id;
@@ -47,8 +52,8 @@ public class Todo {
         return isDone;
     }
 
-    public void setDone(boolean done) {
-        isDone = done;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public String getUser() {
@@ -57,5 +62,18 @@ public class Todo {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return id == todo.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
