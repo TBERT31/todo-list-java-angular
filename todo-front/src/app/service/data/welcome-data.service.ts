@@ -17,12 +17,14 @@ export class WelcomeDataService {
   ) { }
 
   executeHelloWorldBeanService(){
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean')
+    return this.http.get<HelloWorldBean>(
+      'http://localhost:8080/hello-world-bean'
+    )
   }
 
-
-
   executeHelloWorldBeanServiceWithPathVariable(name: string){
-    return this.http.get<HelloWorldBean>(`http://localhost:8080/hello-world/path-variable/${name}`);
+    return this.http.get<HelloWorldBean>(
+      `http://localhost:8080/hello-world/path-variable/${name}`
+    );
   }
 }
