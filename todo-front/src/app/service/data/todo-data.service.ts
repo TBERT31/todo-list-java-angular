@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from 'src/app/list-todos/list-todos.component';
 
 @Injectable({
@@ -11,8 +11,15 @@ export class TodoDataService {
     private http: HttpClient,
   ) { }
 
+  createBasicAuthenticationHttpHeader(){
+    let username = 'user';
+    let password = 'password';
+    let basicAuthHeaderString = 'Basic '+ window.btoa(username+":"+password);
+    return basicAuthHeaderString;
+  }
+
   retrieveAllTodos(username:string){
-      return this.http.get<Todo[]>(`http://localhost:8080/users/${username}/todos`);
+    return this.http.get<Todo[]>(`http://localhost:8080/users/${username}/todos`);
   }
   
   deleteTodo(username:string, id:number){
