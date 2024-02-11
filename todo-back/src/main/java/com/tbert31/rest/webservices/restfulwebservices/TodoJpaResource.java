@@ -56,6 +56,8 @@ public class TodoJpaResource {
             @PathVariable String username,
             @RequestBody Todo todo
     ){
+        todo.setUser(username);
+        
         Todo createdTodo = todoJpaRepository.save(todo);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
